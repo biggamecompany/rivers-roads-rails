@@ -5,6 +5,20 @@ import Tile from "../Tile/Tile";
 
 import { Stage, Layer, Text } from "react-konva";
 
+// todo:
+// fix game board to canvas
+// make game board size infinite
+// allow users to click on any tile to rotate the tile
+// add "grab bag" to pull new random piece from
+// add "user tiles" section to store tiles that have not been placed yet
+// allow users to drag tile from "grab bag "or "user tiles" to place on any empty slot
+// allow user to drag already placed tile from one slot to another slot, while maintaining board and tile state (rotated, etc)
+// count points in sidebar or at top
+// allow users to save their game and come back later
+// reset board button
+// zoom in and out of board with scroll
+// click on non-tile to drag around the board
+
 class Board extends React.Component {
   constructor(props) {
     super(props);
