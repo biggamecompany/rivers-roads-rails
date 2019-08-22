@@ -5,7 +5,16 @@ import { Rect, Line } from "react-konva";
 class ColoredRect extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { color: "#FFFCF2" };
+    this.state = {
+      colors: {
+        //   https://coolors.co/fffcf2-050517-23b5d3-d64550-60d394
+        white: "#FFFCF2",
+        black: "#050517",
+        green: "#60D394",
+        red: "#D64550",
+        blue: "#23B5D3"
+      }
+    };
   }
   handleClick = () => {
     this.setState({
@@ -23,16 +32,13 @@ class ColoredRect extends React.Component {
       ...props
     } = this.props;
     return (
-      // {lineXY ? <div> : null}
       <React.Fragment>
         <Rect
           x={square.x}
           y={square.y}
           width={square.len}
           height={square.len}
-          fill={this.state.color}
-          // shadowBlur={5}
-        //   onClick={this.handleClick}
+          fill={this.state.colors.white}
           onMouseover={this.handleMouseover}
           zIndex={1}
         />
@@ -40,11 +46,8 @@ class ColoredRect extends React.Component {
           x={lineXY.x}
           y={lineXY.y}
           points={[0, lineXY.y + 30, square.len, lineXY.y + 30]}
-          stroke={
-            // this.state.color
-            "#D64550"
-		  }
-		  strokeWidth={15}
+          stroke={this.state.colors.red}
+          strokeWidth={15}
           tension={1}
           zIndex={2}
         />
@@ -52,11 +55,8 @@ class ColoredRect extends React.Component {
           x={lineXY.x}
           y={lineXY.y}
           points={[0, lineXY.y + 75, square.len, lineXY.y + 75]}
-          stroke={
-            // this.state.color
-            "#60D394"
-		  }
-		  strokeWidth={15}
+          stroke={this.state.colors.green}
+          strokeWidth={15}
           tension={1}
           zIndex={2}
         />
@@ -64,11 +64,8 @@ class ColoredRect extends React.Component {
           x={lineXY.x}
           y={lineXY.y}
           points={[0, lineXY.y + 120, square.len, lineXY.y + 120]}
-          stroke={
-            // this.state.color
-            "#23B5D3"
-		  }
-		  strokeWidth={15}
+          stroke={this.state.colors.blue}
+          strokeWidth={15}
           tension={1}
           zIndex={2}
         />
