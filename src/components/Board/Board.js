@@ -1,9 +1,10 @@
 import React from "react";
-import "./Board.css";
-
-import Tile from "../Tile/Tile";
-
 import { Stage, Layer, Text } from "react-konva";
+import { map, addIndex } from "ramda";
+
+import "./Board.css";
+import Tile from "../Tile/Tile";
+import TileGenerator from "../../utils/TileGenerator";
 
 // todo:
 // fix game board to canvas
@@ -23,21 +24,112 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      tileGenerator: new TileGenerator(),
       x: 0,
       y: 0,
       cursor: {
         x: null,
         y: null
-      }
+      },
+      boardMatrix: [
+        {
+          // first empty non clickable tile at 0,0
+          x: 0,
+          y: 0,
+          clickable: false,
+          options: [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
+        },
+        {
+          // second empty clickable tile at 1,0
+          x: 1,
+          y: 0,
+          clickable: true,
+          options: [[0, 1, 0], [0, 0, 0], [0, 1, 0], [0, 0, 0]]
+        },
+        {
+          // third clickable full tile at 1,1
+          x: 1,
+          y: 1,
+          clickable: true,
+          options: [[1, 1, 1], [0, 0, 0], [1, 1, 1], [0, 0, 0]]
+        }
+      ]
+      //   {x: 0, y: 0, clickable: false, options: [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]] }, // non-clickable empty tile at 0,0
+      //   {x: 3, y: 1, clickable: true, options: [[0, 1, 1], [0, 0, 0], [0, 1, 1], [0, 0, 0]] }, // clickable river and road straight tile at 3,1
     };
+    this.initBoard = this.initBoard.bind(this);
+    this.checkBoard = this.checkBoard.bind(this);
+    this.updateBoard = this.updateBoard.bind(this);
+    this.saveBoardState = this.saveBoardState.bind(this);
+    this.restartBoard = this.restartBoard.bind(this);
+    this.loadBoard = this.loadBoard.bind(this);
+    this.loadNewTile = this.loadNewTile.bind(this);
   }
+
+  initBoard() {
+    //   start board
+  }
+
+  checkBoard() {
+    //   confirm board is valid
+    //
+    // if (isEmpty(this.board)) {
+    //   console.log("Starting new empty board");
+    // } else {
+    //   console.log("Starting game from input board");
+    // }
+  }
+
+  updateBoard() {
+    //   check if boardMatrix has non-clickable empty tiles, clickable empty tiles, non-clickable full tiles, and clickable full tiles
+    //
+    // for (const tile in this.state.boardMatrix) {
+    // pad all edges with non-clickable empty tiles,
+    // all clickable empty tiles should go up to 1 tile away from the edge
+    //  all full tiles should go up to 2 tiles away from the edge
+    // }
+  }
+
+  saveBoardState() {
+    //   save board state to boardState.json
+  }
+
+  restartBoard() {
+    //   restarts board
+  }
+
+  loadBoard() {
+    //   load previous board state
+  }
+
+  loadNewTile() {
+    //   loads new tile from tilePatterns.json to store in boardState
+    this.state.tileGenerator.pick();
+  }
+
   handleMouseMove = e => {
     var stage = this.stageRef.getStage();
     this.setState({
       cursor: stage.getPointerPosition()
     });
   };
+
+  componentDidMount() {
+    this.state.tileGenerator.getTileStatus();
+  }
+
   render() {
+    const mapBoard = addIndex(map());
+    const mappedBoard = mapBoard((val, idx) => {
+      console.log(idx);
+      return (
+        <Tile
+          position={{ x: val.x * 150, y: val.y * 150 }}
+          clickable={val.clickable}
+          options={val.options}
+        />
+      );
+    });
     const text = `Cursor position is: ${this.state.cursor.x}, ${
       this.state.cursor.y
     }`;
@@ -54,6 +146,9 @@ class Board extends React.Component {
         offsetY={75}
       >
         <Layer>
+          {mappedBoard}
+          {/* fix mapped board??? */}
+
           <Tile
             position={{ x: 0, y: 0 }}
             clickable={false}
