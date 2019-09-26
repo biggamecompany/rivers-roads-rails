@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "browserify-fs": "^1.0.0",
+    "fs": "0.0.1-security",
     "konva": "^3.4.1",
     "ramda": "^0.26.1",
     "react": "^16.9.0",

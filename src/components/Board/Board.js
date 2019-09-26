@@ -31,6 +31,7 @@ class Board extends React.Component {
     super(props);
     this.state = {
       tileGenerator: new TileGenerator(),
+      tiles: [],
       x: 0,
       y: 0,
       cursor: {
@@ -412,7 +413,10 @@ class Board extends React.Component {
 
   loadNewTile() {
     //   loads new tile from tilePatterns.json to store in boardState
-    this.state.tileGenerator.pick();
+    this.setState(prevState => ({
+      tiles: [...prevState.tiles, this.state.tileGenerator.pick]
+    }));
+    console.log(this.state.tiles);
   }
 
   handleMouseMove = e => {
@@ -425,6 +429,7 @@ class Board extends React.Component {
   handleClick = e => {
     // console.log("handle click function");
     this.checkBoard();
+    this.loadNewTile();
   };
 
   componentDidMount() {
@@ -433,6 +438,7 @@ class Board extends React.Component {
   }
 
   render() {
+    // const { window = { h: 0, w: 0 } } = this.props;
     const mapIdx = addIndex(map());
     const mappedBoard = mapIdx((r, i) => {
       const mappedRows = mapIdx((c, j) => {
@@ -453,10 +459,7 @@ class Board extends React.Component {
       return mappedRows(r);
     });
 
-    const text = `Cursor position is: ${this.state.cursor.x}, ${
-      this.state.cursor.y
-    }`;
-
+    const text = `Cursor position is: ${this.state.cursor.x}, ${this.state.cursor.y}`;
     return (
       // any tiles that have game pieces on them, let there be adjacent tile slots
       <Stage
