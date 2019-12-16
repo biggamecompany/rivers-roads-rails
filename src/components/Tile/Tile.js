@@ -34,14 +34,14 @@ class Tile extends React.Component {
     }
   };
   handleMouseOver = () => {
-    console.log("hovering over", this.props.position);
+    // console.log("hovering over", this.props.position);
   };
   handleMouseEnter = () => {
-    console.log("entered", this.props.position);
+    // console.log("entered", this.props.position);
     this.setState({ hover: !this.state.hover });
   };
   handleMouseOut = () => {
-    console.log("mouse out", this.props.position);
+    // console.log("mouse out", this.props.position);
     this.setState({ hover: !this.state.hover });
   };
   render() {
@@ -52,6 +52,7 @@ class Tile extends React.Component {
       emptyTile = false,
       options = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
     } = this.props;
+    // console.log(options);
     const horizontalLine = props => (
       <Line
         x={0}

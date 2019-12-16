@@ -39,6 +39,7 @@ class Board extends React.Component {
         y: null
       },
       tileLen: 150,
+      currentTile: [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
       boardCache: [
         [
           {
@@ -413,10 +414,12 @@ class Board extends React.Component {
 
   loadNewTile() {
     //   loads new tile from tilePatterns.json to store in boardState
-    this.setState(prevState => ({
-      tiles: [...prevState.tiles, this.state.tileGenerator.pick]
-    }));
-    console.log(this.state.tiles);
+    // this.setState(prevState => ({
+    //   tiles: [...prevState.tiles, this.state.tileGenerator.pick]
+    // }));
+    // console.log(this.state.tiles);
+    this.setState({ currentTile: this.state.tileGenerator.pick });
+    console.log(this.state.currentTile);
   }
 
   handleMouseMove = e => {
@@ -459,7 +462,7 @@ class Board extends React.Component {
       return mappedRows(r);
     });
 
-    const text = `Cursor position is: ${this.state.cursor.x}, ${this.state.cursor.y}`;
+    // const text = `Cursor position is: ${this.state.cursor.x}, ${this.state.cursor.y}`;
     return (
       // any tiles that have game pieces on them, let there be adjacent tile slots
       <Stage
@@ -474,8 +477,19 @@ class Board extends React.Component {
         offsetY={75}
       >
         <Layer>
-          {mappedBoard(this.state.boardCache)}
+          {/* {mappedBoard(this.state.boardCache)} */}
           {/* <Text text={text} x={200} y={200} fontSize={20} /> */}
+          <Tile
+            key={`i11`}
+            position={{
+              x: this.state.tileLen,
+              y: this.state.tileLen
+            }}
+            emptyTile={false}
+            clickable={true}
+            options={[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]}
+            len={this.state.tileLen}
+          />
         </Layer>
       </Stage>
     );
