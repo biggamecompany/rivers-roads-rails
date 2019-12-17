@@ -477,9 +477,9 @@ class Board extends React.Component {
         offsetY={75}
       >
         <Layer>
-          {/* {mappedBoard(this.state.boardCache)} */}
+          {mappedBoard(this.state.boardCache)}
           {/* <Text text={text} x={200} y={200} fontSize={20} /> */}
-          <Tile
+          {/* <Tile
             key={`i11`}
             position={{
               x: this.state.tileLen,
@@ -489,7 +489,7 @@ class Board extends React.Component {
             clickable={true}
             options={[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]}
             len={this.state.tileLen}
-          />
+          /> */}
         </Layer>
       </Stage>
     );
