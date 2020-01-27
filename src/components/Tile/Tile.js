@@ -115,30 +115,30 @@ class Tile extends React.Component {
 							strokeWidth={4}
 						/>
 					)}
-				{!emptyTile && clickable
+				{!emptyTile && clickable && options[0][0] == 1 && options[2][0] == 1 
 					? horizontalLine({ color: this.state.colors.red, startPoint: 50 })
 					: null}
-				{!emptyTile && clickable
+				{!emptyTile && clickable && options[0][1] == 1 && options[2][1] == 1 
 					? horizontalLine({
 						color: this.state.colors.black,
 						startPoint: 75
 					})
 					: null}
-				{!emptyTile && clickable
+				{!emptyTile && clickable && options[0][2] == 1 && options[2][2] == 1 
 					? horizontalLine({
 						color: this.state.colors.blue,
 						startPoint: 100
 					})
 					: null}
-				{!emptyTile && clickable
+				{/* {!emptyTile && clickable
 					? leftArc({ color: this.state.colors.green, startPoint: 50 })
-					: null}
-				{!emptyTile && clickable
+					: null} */}
+				{/* {!emptyTile && clickable
 					? leftArc({ color: this.state.colors.green, startPoint: 75 })
-					: null}
-				{!emptyTile && clickable
+					: null} */}
+				{/* {!emptyTile && clickable
 					? leftArc({ color: this.state.colors.green, startPoint: 100 })
-					: null}
+					: null} */}
 				{/* {verticalLine({ color: this.state.colors.red, startPoint: 30 })} */}
 				{/* {verticalLine({ color: this.state.colors.green, startPoint: 75 })} */}
 				{/* {verticalLine({ color: this.state.colors.blue, startPoint: 120 })} */}

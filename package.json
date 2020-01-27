@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "browserify-fs": "^1.0.0",
-    "firebase": "^7.6.2",
+    "firebase": "^7.7.0",
     "fs": "0.0.1-security",
     "handlebars": "^4.7.2",
     "konva": "^3.4.1",
