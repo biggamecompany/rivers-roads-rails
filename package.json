@@ -6,7 +6,7 @@
     "browserify-fs": "^1.0.0",
     "firebase": "^7.6.2",
     "fs": "0.0.1-security",
-    "handlebars": "^4.7.2",
+    "handlebars": "^4.7.7",
     "konva": "^3.4.1",
     "ramda": "^0.26.1",
     "react": "^16.12.0",
